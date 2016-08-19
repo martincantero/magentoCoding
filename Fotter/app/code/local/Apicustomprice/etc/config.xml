@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Fotter_Apicustomprice>
+            <version>0.1.0</version>
+        </Fotter_Apicustomprice>
+    </modules>
+    
+    <global>
+        <helpers>
+            <fotter_apicustomprice>
+                <class>Fotter_Apicustomprice_Helper_Data</class>
+            </fotter_apicustomprice>
+        </helpers>
+
+        <models>           
+            <cart>
+                <rewrite>
+                   <product_api>Fotter_Apicustomprice_Model_Cart_Product_Api</product_api>
+                </rewrite>
+            </cart>      
+
+            <checkout>
+                <rewrite>
+                   <api_resource_customer>Fotter_Apicustomprice_Model_Api_Resource_Customer</api_resource_customer>
+                </rewrite>
+            </checkout>      
+        </models>
+
+           
+    </global>
+</config>

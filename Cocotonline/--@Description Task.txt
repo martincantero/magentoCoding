@@ -1,0 +1,1 @@
+Cocot_Nosize: It is a custom module that provides the functionality to record an event in the view of the product when some size is without stock and then notify the customer when is available again to buy it.

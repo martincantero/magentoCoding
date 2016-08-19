@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Fotter_ApiCustomSales>
+            <version>0.1.0</version>
+        </Fotter_ApiCustomSales>
+    </modules>
+    
+    <global>
+        <helpers>
+            <fotter_apicustomsales>
+                <class>Fotter_ApiCustomSales_Helper_Data</class>
+            </fotter_apicustomsales>
+        </helpers>
+
+        <models>           
+            <sales>
+                <rewrite>
+                   <order_api>Fotter_ApiCustomSales_Model_Sales_Order_Api</order_api>
+                </rewrite>
+            </sales>            
+        </models>
+    </global>
+</config>

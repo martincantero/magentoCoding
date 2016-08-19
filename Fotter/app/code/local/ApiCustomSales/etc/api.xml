@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<config>
+    <api>
+        <resources>
+            <apicustomsales translate="title" module="apiCustomSales">
+                <title>Sales Order API</title>
+                <model>Fotter_ApiCustomSales_Model_Sales_Order_Api</model>
+                <methods>
+                    <info translate="title" module="apiCustomSales">
+                        <title>Retrieve product</title>
+                        <method>info</method>
+                    </info>
+                </methods>
+            </apicustomsales>
+        </resources>
+    </api>
+       
+</config>

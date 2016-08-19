@@ -1,0 +1,216 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Santex_Andreani
+ *
+ * @category   Santex
+ * @package    Santex_Andreani
+ * @copyright  Copyright (c) 2015 Santex Group. (http://santexgroup.com/)
+ */
+-->
+<config>
+    <modules>
+        <Santex_Andreani>
+            <version>0.0.1</version>
+        </Santex_Andreani>
+    </modules>
+    <global>
+        <models>
+            <andreani>
+                <class>Santex_Andreani_Model</class>
+                <resourceModel>andreani_resource</resourceModel>
+            </andreani>
+			<andreani_resource>
+				<class>Santex_Andreani_Model_Resource</class>
+				<entities>
+					<order>
+						<table>andreani_order</table>
+					</order>
+				</entities>
+			</andreani_resource>
+        </models>
+        <resources>
+            <andreani_setup>
+                <setup>
+                    <module>Santex_Andreani</module>
+					<class>Mage_Eav_Model_Entity_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </andreani_setup>
+            <andreani_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </andreani_write>
+            <andreani_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </andreani_read>
+        </resources>
+        <helpers>
+            <andreani>
+                <class>Santex_Andreani_Helper</class>
+            </andreani>
+        </helpers>
+        <blocks>
+            <andreani>
+                <class>Santex_Andreani_Block</class>
+            </andreani>
+        </blocks>
+
+        <events>
+            <sales_order_place_after>
+                <observers>
+                    <andreani_order_success>
+                        <type>singleton</type>
+                        <class>andreani/observer</class>
+                        <method>andreaniObserver</method>
+                    </andreani_order_success>
+                </observers>
+            </sales_order_place_after>
+            <sales_order_shipment_save_before>
+                <observers>
+                    <andreani>
+                        <type>singleton</type>
+                        <class>andreani/observer</class>
+                        <method>salesOrderShipmentSaveBefore</method>
+                    </andreani>
+                </observers>
+            </sales_order_shipment_save_before>
+            <sales_order_shipment_save_after>
+                <observers>
+                    <andreani>
+                        <type>singleton</type>
+                        <class>andreani/observer</class>
+                        <method>salesOrderShipmentSaveAfter</method>
+                    </andreani>
+                </observers>
+            </sales_order_shipment_save_after>
+        </events>
+    </global>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <andreani before="Mage_Adminhtml">Santex_Andreani_Adminhtml</andreani>
+                    </modules>
+                </args>
+            </adminhtml>
+            <andreani>
+                <use>admin</use>
+                <args>
+                    <module>Santex_Andreani</module>
+                    <frontName>andreani</frontName>
+                </args>
+            </andreani>
+        </routers>
+    </admin>
+    <adminhtml>
+        <menu>
+            <sales>
+                <children>
+                    <andreani translate="title">
+                        <title>Andreani</title>
+                        <sort_order>91</sort_order>
+                        <children>
+                            <pedidos translate="title">
+                                <title>Estado de Pedidos</title>
+                                <sort_order>20</sort_order>
+                                <action>adminhtml/pedidos/index</action>
+                            </pedidos>
+                        </children>
+                    </andreani>
+                </children>
+            </sales>
+        </menu>
+        <acl>
+            <resources>
+                <all>
+                    <title>Allow Everything</title>
+                </all>
+                <admin>
+                    <children>
+                        <sales>
+                            <children>
+                                <andreani translate="title" module="andreani">
+                                    <title>Andreani</title>
+                                    <sort_order>1000</sort_order>
+                                    <children>
+                                        <pedidos translate="title">
+                                            <title>Andreani</title>
+                                        </pedidos>
+                                    </children>
+                                </andreani>
+                            </children>
+                        </sales>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+        <layout>
+            <updates>
+                <andreani>
+                    <file>Santex/andreani.xml</file>
+                </andreani>
+            </updates>
+        </layout>
+        <events>
+            <core_block_abstract_prepare_layout_before>
+                <observers>
+                    <andreani_core_block_abstract_prepare_layout_before>
+                        <class>andreani/observer</class>
+                        <method>addMassAction</method>
+                    </andreani_core_block_abstract_prepare_layout_before>
+                </observers>
+            </core_block_abstract_prepare_layout_before>
+        </events>
+    </adminhtml>
+    <default>
+        <santex_andreani>
+            <settings>
+                <enable>1</enable>
+                <testmode>1</testmode>
+                <cache>0</cache>
+                <medida>kilos</medida>
+                <pesomax>30</pesomax>
+                <metodo>completo</metodo>
+                <usuario>eCommerce_Integra</usuario>
+                <password>passwOrd</password>
+                <nrocliente>andcorreo</nrocliente>
+            </settings>
+        </santex_andreani>
+        <carriers>
+            <andreaniestandar>
+                <active>0</active>
+                <model>andreani/carrier_andreaniestandar</model>
+                <name>andreani</name>
+                <title>Andreani Estandar</title>
+                <description><![CDATA[Recibí el pedido en tu casa.]]></description>
+                <sort_order>10</sort_order>
+                <regla>0</regla>
+            </andreaniestandar>
+            <andreaniurgente>
+                <active>0</active>
+                <model>andreani/carrier_andreaniurgente</model>
+                <name>andreaniurgente</name>
+                <title>Andreani Urgente</title>
+                <description><![CDATA[Recibí el pedido en tu casa en 24 hs!]]></description>
+                <sort_order>20</sort_order>
+                <regla>0</regla>
+            </andreaniurgente>
+            <andreanisucursal>
+                <active>0</active>
+                <model>andreani/carrier_andreanisucursal</model>
+                <name>andreanisucursal</name>
+                <title>Andreani Sucursal</title>
+                <description><![CDATA[Busca el pedido en la sucursal más cercana: ]]></description>
+                <sort_order>30</sort_order>
+                <regla>0</regla>
+            </andreanisucursal>
+        </carriers>
+    </default>
+</config>

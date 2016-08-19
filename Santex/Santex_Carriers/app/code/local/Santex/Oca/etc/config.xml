@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Santex_Oca
+ *
+ * @category   Santex
+ * @package    Santex_Oca
+ * @copyright  Copyright (c) 2015 Santex Group. (http://santexgroup.com/)
+ */
+-->
+<config>
+    <modules>
+        <Santex_Oca>
+            <version>0.1.0</version>
+        </Santex_Oca>
+    </modules>
+    <admin>
+        <routers>
+            <oca>
+                <use>admin</use>
+                <args>
+                    <module>Santex_Oca</module>
+                    <frontName>oca</frontName>
+                </args>
+            </oca>
+        </routers>
+    </admin>
+    <global>
+        <models>
+            <oca>
+                <class>Santex_Oca_Model</class>
+                <resourceModel>oca_resource</resourceModel>
+            </oca>
+            <oca_resource>
+                <class>Santex_Oca_Model_Resource</class>
+                <entities>
+                    <branch>
+                        <table>santex_oca_branch</table>
+                    </branch>
+                    <operatory>
+                        <table>santex_oca_operatory</table>
+                    </operatory>
+                </entities>
+            </oca_resource>
+        </models>
+        <resources>
+            <oca_setup>
+                <setup>
+                    <module>Santex_Oca</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </oca_setup>
+            <oca_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </oca_write>
+            <oca_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </oca_read>
+        </resources>
+        <helpers>
+            <oca>
+                <class>Santex_Oca_Helper</class>
+            </oca>
+        </helpers>
+        <blocks>
+            <oca>
+                <class>Santex_Oca_Block</class>
+            </oca>
+        </blocks>
+        <cache>
+            <types>
+                <santex_oca translate="label description" module="santex_oca">
+                    <label>OCA e-Pak Cache</label>
+                    <description>Cache for OCA web service</description>
+                    <tags>OCA_EPAK_CACHE</tags>
+                </santex_oca>
+            </types>
+        </cache>
+    </global>
+    <default>
+        <carriers>
+            <oca>
+                <min_box_volume>1</min_box_volume>
+                <active>0</active>
+                <code>oca</code>
+                <sallowspecific>0</sallowspecific>
+                <model>oca/carrier_oca</model>
+                <name>Oca Shipping Method</name>
+                <title>Oca</title>
+                <type>I</type>
+                <specificerrmsg>This shipping method is currently unavailable. If you would like to ship using this shipping method, please contact us.</specificerrmsg>
+                <handling_type>F</handling_type>
+            </oca>
+        </carriers>
+        <oca>
+            <settings>
+                <ws_url>http://webservice.oca.com.ar/oep_tracking/Oep_Track.asmx?wsdl</ws_url>
+                <tracking_url>
+                    https://www1.oca.com.ar/OEPTrackingWeb/detalleenvio.asp?numero=
+                </tracking_url>
+                <hide_disabled_branch>0</hide_disabled_branch>
+                <cache_lifetime>7200</cache_lifetime>
+            </settings>
+        </oca>
+    </default>
+</config>

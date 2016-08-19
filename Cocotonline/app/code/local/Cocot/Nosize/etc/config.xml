@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Cocot_Nosize>
+            <version>1.0.0</version>
+        </Cocot_Nosize>
+    </modules>
+
+    <frontend>
+        <routers>
+            <nosize>
+                <use>standard</use>
+                <args>
+                    <module>Cocot_Nosize</module>
+                    <frontName>nosize</frontName>
+                </args>
+            </nosize>
+        </routers>
+    </frontend>
+    
+    <global>
+        <blocks>
+            <nosize>
+                <class>Cocot_Nosize_Block</class>
+            </nosize> 
+        </blocks>
+        <helpers>
+            <nosize>
+                <class>Cocot_Nosize_Helper</class>
+            </nosize>
+        </helpers>
+        <template>
+            <email>
+                <nosize>
+                    <label>Nosize Email</label>
+                    <file>nosize.html</file>
+                    <type>html</type>
+                </nosize>
+            </email>
+        </template>
+        <models>
+            <nosize>
+                <class>Cocot_Nosize_Model</class>
+                <resourceModel>nosize_resource</resourceModel>
+            </nosize>
+            <nosize_resource>
+                <class>Cocot_Nosize_Model_Resource</class>
+                <entities>
+                    <item>
+                        <table>cocot_nosize</table>
+                    </item>
+                </entities>
+            </nosize_resource>
+        </models>
+        <resources>
+            <nosize_setup>
+                <setup>
+                    <module>Cocot_Nosize</module>
+                    <class>Cocot_Nosize_Model_Resource_Setup</class>
+                </setup>
+            </nosize_setup>
+            <nosize_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </nosize_write>
+            <nosize_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </nosize_read>
+        </resources>
+    </global>
+    
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <!-- This is how we load our Adminhtml controllers -->
+                    <modules>
+                        <Cocot_Nosize before="Mage_Adminhtml">Cocot_Nosize_Adminhtml</Cocot_Nosize>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+     
+    <adminhtml>
+        <layout>
+            <updates>
+                <cocot_nosize>
+                    <!--
+                    We again keep a nice naming convention and make our module upgrade proof by placing it in a separate folder
+                    - Since we are in the adminhtml node, this will look for the XML file in the app/design/adminhtml/default/default root folder
+                    -->
+                    <file>nosize.xml</file>
+                </cocot_nosize>
+            </updates>
+        </layout>
+    </adminhtml>
+    
+   <!-- <crontab>
+        <jobs>
+            <cocot_nosize>
+                <schedule>
+                    <cron_expr>*/15 * * * *</cron_expr>
+                </schedule>
+                <run>
+                    <model>nosize/item::sendEmail</model>
+                </run>
+            </cocot_nosize>
+        </jobs>
+    </crontab> -->
+</config>

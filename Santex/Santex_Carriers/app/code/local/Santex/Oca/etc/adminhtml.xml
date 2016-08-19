@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Santex_Oca
+ *
+ * @category   Santex
+ * @package    Santex_Oca
+ * @copyright  Copyright (c) 2015 Santex Group. (http://santexgroup.com/)
+ */
+-->
+<config>
+    <menu>
+        <sales>
+            <children>
+                <oca translate="title" module="oca">
+                    <title>OCA Settings</title>
+                    <sort_order>35</sort_order>
+                    <children>
+                        <operatory translate="title" module="oca">
+                            <title>OCA Operatories</title>
+                            <action>oca/adminhtml_operatory</action>
+                        </operatory>
+                        <branches translate="title" module="oca">
+                            <title>OCA Branches</title>
+                            <action>oca/adminhtml_branch</action>
+                        </branches>
+                    </children>
+                </oca>
+            </children>
+        </sales>
+    </menu>
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                    <sales>
+                        <children>
+                            <oca translate="title" module="oca">
+                                <title>Oca</title>
+                                <sort_order>1040</sort_order>
+                            </oca>
+                        </children>
+                    </sales>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <oca translate="title" module="oca">
+                                        <title>Oca</title>
+                                        <sort_order>1040</sort_order>
+                                    </oca>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

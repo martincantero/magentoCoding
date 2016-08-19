@@ -1,0 +1,1 @@
+ApiCustomSale: Extending Magento API in order information to adding DNI customer attribute(based in Amasty customer Attribute extension) and be available for FWS(an external service).

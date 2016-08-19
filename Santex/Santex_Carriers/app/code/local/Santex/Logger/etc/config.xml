@@ -1,0 +1,123 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Santex_Logger
+ * 
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * 
+ * Module based on Dc_Logger.
+ *
+ * @category   Santex
+ * @package    Santex_Logger
+ * @copyright  Copyright (c) 2014 Santex Group. (http://santexgroup.com/)
+ */
+-->
+<config>
+    <modules>
+        <Santex_Logger>
+            <version>1.0.0</version>
+        </Santex_Logger>
+    </modules>
+    <admin>
+        <routers>
+			<logger>
+				<use>admin</use>
+				<args>
+					<module>Santex_Logger</module>
+					<frontName>logger</frontName>
+				</args>
+			</logger>
+        </routers>
+    </admin>
+    <adminhtml>
+		<layout>
+			<updates>
+				<logger>
+					<file>santex/logger.xml</file>
+				</logger>
+			</updates>
+		</layout>
+    </adminhtml>   
+    <global>
+        <models>
+            <logger>
+                <class>Santex_Logger_Model</class>
+                <resourceModel>logger_resource</resourceModel>
+            </logger>
+            <logger_resource>
+                <class>Santex_Logger_Model_Resource</class>
+                <entities>
+					<logs>
+                        <table>santex_logger_logs</table>
+                    </logs>
+                    <process>
+                        <table>santex_logger_process</table>
+                    </process>
+                </entities>
+            </logger_resource>
+        </models>
+        <resources>
+            <logger_setup>
+                <setup>
+                    <module>Santex_Logger</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </logger_setup>
+            <logger_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </logger_write>
+            <logger_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </logger_read>
+        </resources>
+        <blocks>
+            <logger>
+                <class>Santex_Logger_Block</class>
+            </logger>
+        </blocks>
+        <helpers>
+            <logger>
+                <class>Santex_Logger_Helper</class>
+            </logger>
+        </helpers>
+		<template>
+            <email>
+                <logger_email_template translate="label" module="logger">
+                    <label>Logger - Log</label>
+                    <file>santex/logger/logs.html</file>
+                    <type>text</type>
+                </logger_email_template>
+            </email>
+       </template>
+    </global>
+	<crontab>
+        <jobs>
+            <logger_clean_logs>
+                <run>
+                    <model>logger/cron::runCleanLogs</model>
+                </run>
+            </logger_clean_logs>
+        </jobs>
+    </crontab>
+    <default>
+        <logger>
+            <settings>
+                <enable>0</enable>
+                <save_days_logs>2</save_days_logs>
+            </settings>
+            <email>
+                <enable>0</enable>
+            </email>
+        </logger>
+    </default>
+</config>

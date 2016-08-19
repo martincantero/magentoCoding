@@ -1,0 +1,1 @@
+Apicustomprice: An external service needs to change the custom price of a product by Magento API for update cart.

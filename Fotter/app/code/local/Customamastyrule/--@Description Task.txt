@@ -1,0 +1,1 @@
+Customamastyrule: Extending Amasty Customer Attribute plugin to adding a new feature in the validation fields.

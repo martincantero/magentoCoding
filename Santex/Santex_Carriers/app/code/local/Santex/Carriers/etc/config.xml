@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Santex_Carriers
+ *
+ * @category   Santex
+ * @package    Santex_Carriers
+ * @copyright  Copyright (c) 2015 Santex Group. (http://santexgroup.com/)
+ */
+-->
+<config>
+    <modules>
+        <Santex_Carriers>
+            <version>0.1.0</version>
+        </Santex_Carriers>
+    </modules>
+    <global>
+        <helpers>
+            <carriers>
+                <class>Santex_Carriers_Helper</class>
+            </carriers>
+        </helpers>
+    </global>
+</config>

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<config>
+    <api>
+        <resources>
+            <apicustomprice translate="title" module="apicustomprice">
+                <title>Cart Product API</title>
+                <model>Fotter_Apicustomprice_Model_Cart_Product_Api</model>
+                <methods>
+                    <updatecustomprice translate="title" module="apicustomprice">
+                        <title>Set cart product price</title>
+                        <method>updatecustomprice</method>
+                    </updatecustomprice>
+                </methods>
+            </apicustomprice>
+        </resources>
+    </api>
+</config>

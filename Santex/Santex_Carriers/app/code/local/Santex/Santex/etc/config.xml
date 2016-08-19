@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Santex_Santex
+ *
+ * @category   Santex
+ * @package    Santex_Santex
+ * @copyright  Copyright (c) 2014 Santex Group. (http://santexgroup.com/)
+ */
+-->
+<config>
+    <modules>
+        <Santex_Santex>
+            <version>1.0.0</version>
+        </Santex_Santex>
+    </modules>
+    <adminhtml>
+        <translate>
+            <modules>
+                <Santex_Santex>
+                    <files>
+                        <default>Santex_Santex.csv</default>
+                    </files>
+                </Santex_Santex>
+            </modules>
+        </translate>
+        <layout>
+            <updates>
+                <santex>
+                    <file>santex/santex.xml</file>
+                </santex>
+            </updates>
+        </layout>
+    </adminhtml> 
+    <global>
+        <blocks>
+            <santex>
+                <class>Santex_Santex_Block</class>
+            </santex>
+        </blocks>
+        <helpers>
+            <santex>
+                <class>Santex_Santex_Helper</class>
+            </santex>
+        </helpers>
+    </global>
+</config>

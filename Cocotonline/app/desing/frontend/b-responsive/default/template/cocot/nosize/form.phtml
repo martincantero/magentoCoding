@@ -1,0 +1,93 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     fotter_default
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php $productId = Mage::registry('nosizeProductId'); ?>
+<?php $product = Mage::getModel('catalog/product')->load($productId); ?>
+
+<div class="nosize">
+    <form action="<?php echo $this->getUrl('nosize/send') ?>" id="nosize_form" method="post">
+        <div class="fieldset">
+        <h2 class="legend"> <?php echo $product->getName(); ?></h2>
+            <div class="col2-set">
+                <div class="col-1">
+                    <h2 class="sub-title">Avisame cuando entre!</h2>
+
+                </div>
+                <div class="col-2">
+                    
+                    <p>Completá los campos de abajo así podemos avisarte cuando el modelo esté disponible en tu talle!</p>
+                    <?php $_customerName = ''; ?>
+                    <?php $_customerEmail = ''; ?>
+
+                    <ul class="form-list">
+                        <li>
+                            <label for="name" class="required"><em>*</em><?php echo 'Nombre'//$this->__('Name') ?></label>
+                            <div class="input-box">
+                                <input name="name" id="name" title="<?php 'Nombre'//echo $this->__('Name') ?>" value="<?php echo $_customerName; ?>" class="input-text required-entry" type="text" />
+                            </div>
+                        </li>
+                        <li>
+                            <label for="email" class="required"><em>*</em><?php echo $this->__('Email') ?></label>
+                            <div class="input-box">
+                                <input name="email" id="email" title="<?php echo $this->__('Email') ?>" value="<?php echo $_customerEmail; ?>" class="input-text required-entry validate-email" type="text" />
+                            </div>
+                        </li>
+
+                        <li>
+                            <?php if($product->getTypeId()=="configurable"): ?>
+                            <?php Mage::helper('catalog/product')->setSkipSaleableCheck(true); ?>
+                            <?php $block = $this->getProductTypeBlock($product); ?>
+                            <?php $prodConf = json_decode($block->getJsonConfig(), true); ?>
+                            <label for="size" class="required"><em>*</em><?php echo $this->__('Talle') ?></label>
+                            <div class="input-box">
+                                <select name="size" id="size" class="required-entry super-attribute-select form-control">
+                                    <option><?php echo $this->__('Choose an Option...') ?></option>
+                                    <?php foreach($prodConf['attributes'] as $attr): ?>
+                                        <?php foreach($attr['options'] as $o): ?>
+                                            <option value="<?php echo $o['products'][0] .'|'.$o['label'] ?>"><?php echo $o['label'] ?></option>
+                                        <?php endforeach; ?>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                        </li>
+                        <?php endif; ?>
+
+                    </ul>
+                    <div class="buttons-set">
+                        <input name="product_id" id="product_id" value="<?php echo $product->getId() ?>" type="hidden" />
+                        <input name="product_sku" id="product_sku" value="<?php echo $product->getSku() ?>" type="hidden" />
+                        <input name="product_name" id="product_name" value="<?php echo $product->getName() ?>" type="hidden" />
+                        <input name="product_url" id="product_url" value="<?php echo $product->getProductUrl() ?>" type="hidden" />
+                        <button type="submit" title="<?php echo 'Enviar'//$this->__('Submit') ?>" onclick="_gaq.push(['_trackEvent', 'Producto', 'NoSize', 'Enviar']);" class="btn btn-default"><span><span><?php echo 'Enviar'//$this->__('Submit') ?></span></span></button>
+                    </div>
+                </div>
+                <div>
+                    <p class="disclaimer">Debido a la popularidad de algunos modelos, puede que el talle no pueda reponerse.<br>De todos modos vamos hacer lo mejor para conseguirlo.</p>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Santex_Logger
+ * 
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * 
+ * Module based on Dc_Logger.
+ *
+ * @category   Santex
+ * @package    Santex_Logger
+ * @copyright  Copyright (c) 2014 Santex Group. (http://santexgroup.com/)
+ */
+-->
+<config>
+    <menu>
+        <system>
+            <children>
+                <logger module="logger">
+                    <title>Logger</title>
+                    <sort_order>22</sort_order>               
+                    <action>logger/adminhtml_logger</action>
+                </logger>
+            </children>
+        </system>
+    </menu>
+	<acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <logger translate="title" module="logger">
+                                <title>Logger</title>
+                                <sort_order>1022</sort_order>
+                            </logger>
+                        </children>
+                    </system>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <logger translate="title" module="logger">
+                                        <title>Logger</title>
+                                        <sort_order>1022</sort_order>
+                                    </logger>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

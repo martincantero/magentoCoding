@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Fotter_Customamastyrule>
+            <version>0.1.0</version>
+        </Fotter_Customamastyrule>
+    </modules>
+    
+	<global>
+	    <blocks>
+	        <amcustomerattr>
+	            <rewrite>
+	                <adminhtml_customer_attribute_edit_tab_main>Fotter_Customamastyrule_Block_Adminhtml_Customer_Attribute_Edit_Tab_Main</adminhtml_customer_attribute_edit_tab_main>
+	            </rewrite>
+	        </amcustomerattr>
+	    </blocks>
+	</global>
+
+</config>	
+
